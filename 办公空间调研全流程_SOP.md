@@ -1,6 +1,6 @@
 ---
 document: 办公空间调研全流程 SOP
-version: "1.0"
+version: "1.1"
 updated: 2026-10-02
 status: reusable
 scope: research-github-eagle-obsidian
@@ -16,7 +16,7 @@ scope: research-github-eagle-obsidian
 
 1. **GitHub 调研报告**：项目来源、频率统计、空间趋势、家具趋势、家具搭配与产品启发；
 2. **Eagle 图片资料**：项目参考图片单独归入用户指定文件夹，不嵌入 GitHub 或 Obsidian 报告；
-3. **Obsidian 审核归档**：只归档用户确认通过的 GitHub 版本。
+3. **Obsidian 审核归档**：只归档已经由用户审核并合并到 GitHub `main` 的版本。
 
 ---
 
@@ -58,8 +58,9 @@ focus:
 → 按固定格式生成报告
 → 完成质量检查
 → 提交 GitHub Pull Request
-→ 用户审核确认
-→ 将审核版本归档到 Obsidian
+→ 用户审核并合并 Pull Request
+→ 自动检测 main 中的审核版本
+→ 自动归档到 Obsidian
 ```
 
 ## Step 1：确定主题与边界
@@ -122,19 +123,27 @@ focus:
 2. 只提交本次报告与明确需要更新的流程文件；
 3. 推送远端并创建 Pull Request；
 4. 提供报告文件、提交号和审核链接；
-5. 用户确认前，不执行 Obsidian 正式归档。
+5. 用户在 GitHub 审核报告；
+6. **Pull Request 合并到 `main` 即代表审核通过**，用户不需要再向 Codex 发送归档确认消息；
+7. 仅打开、关闭但未合并、仍为草稿或只推送分支，均不视为审核通过。
 
 ## Step 8：Obsidian 归档
 
-用户明确确认报告无误后：
+自动归档任务检测到报告已进入 `main` 后：
 
-1. 记录审核通过的 Git 提交号和源文件路径；
-2. 从该提交读取报告，不默认使用本地同名文件或 `_v2` 临时副本；
-3. 检查当前 Obsidian Vault 与目标文件是否存在；
-4. 创建 `办公空间调研/<行业子文件夹>`；
-5. 按中文名称复制文档；
-6. 比较 Git blob，确认归档内容与审核版本一致；
-7. 回报 Git 提交、Obsidian 路径和校验结果。
+1. 拉取远端最新 `origin/main`，只处理 `main` 中符合每日报告命名规则的 Markdown；
+2. 校验报告日期、`research_topic_cn` 与月度计划表当天主题一致；
+3. 记录 `main` 中的 Git blob、源文件路径和对应提交；
+4. 从 `origin/main` 的 Git blob 读取报告，不使用本地同名文件或 `_v2` 临时副本；
+5. 检查当前 Obsidian Vault 与目标文件是否存在；
+6. 创建 `办公空间调研/<中文调研主题>`；
+7. 按 `YYYY-MM-DD_<中文调研主题>办公室研究.md` 归档；
+8. 比较归档文件与 Git blob，确认内容一致；
+9. 记录成功、已存在或冲突状态。
+
+自动归档不依赖用户再次发送消息。若目标文件已存在且内容不同、主题无法对应、报告尚未进入 `main` 或 GitHub 无法访问，任务必须停止该文件的归档并保留错误记录，不得猜测或覆盖。
+
+本机自动归档任务名为 `Codex-Office-Space-Obsidian-Archive`，每 30 分钟检查一次。电脑关机或用户未登录时不会在云端运行，恢复登录后继续检查；重复检查相同 Git blob 不会重复写入。
 
 当前空间调研 Vault：
 
@@ -177,10 +186,11 @@ YAML 属性：
 ---
 date: YYYY-MM-DD
 research_topic: Architecture & Design Firms
+research_topic_cn: 建筑设计公司
 sample_size: 10
 source: Office Snapshots
 source_filter: industry=architecture-firm
-status: test-complete
+status: pending-review
 perspective: furniture-design
 ---
 ```
@@ -298,7 +308,9 @@ perspective: furniture-design
 # 六、文件冲突与安全规则
 
 - Git 工作区已有未提交修改或删除时，保留现状，只暂存本次明确修改的文件。
-- GitHub 审核版本与本地文件不一致时，以用户确认的 Git 提交为准。
+- 只有报告已经进入远端 `main` 才视为审核通过；研究分支、开放 PR 或关闭但未合并的 PR 不触发归档。
+- GitHub 审核版本与本地文件不一致时，以 `origin/main` 中的 Git blob 为准。
+- 报告的 `research_topic_cn` 必须与月度计划表当天主题一致，否则停止自动归档。
 - Obsidian 目标文件不存在时直接归档。
 - Obsidian 目标文件已存在且内容一致时不重复写入。
 - 目标文件已存在但内容不同时停止操作，不静默覆盖。
@@ -330,15 +342,16 @@ perspective: furniture-design
 
 - [ ] 报告已提交独立研究分支
 - [ ] Pull Request 可以访问
-- [ ] 用户已明确确认审核通过
+- [ ] 用户已审核并将 Pull Request 合并到 `main`
 
 ## Obsidian
 
-- [ ] 使用审核通过的 Git 提交作为源版本
+- [ ] 使用 `origin/main` 中的审核版本作为归档源
 - [ ] 已创建 `办公空间调研/<行业子文件夹>`
 - [ ] 文件使用中文归档名称
 - [ ] Git blob 与 Obsidian 文件一致
 - [ ] 未覆盖现有不同内容的笔记
+- [ ] 无需用户再次向 Codex 发送归档确认消息
 
 ---
 
@@ -350,8 +363,8 @@ perspective: furniture-design
 → 用户行为
 → 家具类型与组合
 → 产品开发机会
-→ GitHub 审核
-→ Obsidian 知识归档
+→ GitHub 审核并合并到 main
+→ 自动 Obsidian 知识归档
 ```
 
 最终报告保持简洁，内部研究过程可以详细；图片进入 Eagle，审核文档进入 Obsidian，三类资料各自归档，不相互混放。
