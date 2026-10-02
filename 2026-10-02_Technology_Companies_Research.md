@@ -1,10 +1,11 @@
 ---
 date: 2026-10-02
 research_topic: Technology Companies
+research_topic_cn: 科技类公司
 sample_size: 10
 source: Office Snapshots
 source_filter: industry=technology,hardware-software-development
-status: test-complete
+status: pending-review
 perspective: furniture-design
 ---
 
