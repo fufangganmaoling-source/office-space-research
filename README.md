@@ -16,13 +16,13 @@
 - 样本数量：10 个项目
 - 主要来源：Office Snapshots
 - 研究内容：空间类型频率、空间趋势、家具设计趋势、家具搭配方法和产品开发启发
-- [查看调研报告](./2026-10-02_Architecture_Design_Firms_Office_Research.md)
+- [查看调研报告](./2026-10-02_Architecture_Design_Firms_Office_Research_v2.md)
 
 ## 调研方法与 SOP
 
-- [办公空间调研全流程 SOP](./办公空间调研全流程_SOP.md)：从项目筛选、报告排版、Eagle 图片整理到 GitHub 审核和 Obsidian 归档的统一流程。
-- [日度调研框架 v2](./Office_Space_Daily_Research_Framework_v2.md)：样本规则、内部统计、家具分析和报告结构。
-- [Obsidian 归档 SOP](./Office_Space_Research_Obsidian_Archive_SOP.md)：GitHub 审核通过后的版本锁定、目录建立和完整性校验。
+调研框架、归档流程与历史版本保留在独立调研分支：
+
+- [查看调研过程与 SOP 分支](https://github.com/fufangganmaoling-source/office-space-research/tree/research/2026-10-02-architecture-design-firms)
 
 ## 固定报告结构
 
