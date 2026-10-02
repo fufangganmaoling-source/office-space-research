@@ -11,18 +11,11 @@
 
 ## 当前调研
 
-### 2026-10-02｜建筑与设计公司办公空间
-
-- 样本数量：10 个项目
-- 主要来源：Office Snapshots
-- 研究内容：空间类型频率、空间趋势、家具设计趋势、家具搭配方法和产品开发启发
-- [查看调研报告](./2026-10-02_Architecture_Design_Firms_Office_Research_v2.md)
+新一轮调研按照月度计划执行。每日研究报告通过独立分支和 Pull Request 提交，审核通过后再归入主分支与 Obsidian。
 
 ## 调研方法与 SOP
 
-调研框架、归档流程与历史版本保留在独立调研分支：
-
-- [查看调研过程与 SOP 分支](https://github.com/fufangganmaoling-source/office-space-research/tree/research/2026-10-02-architecture-design-firms)
+- [查看办公空间调研全流程 SOP](./办公空间调研全流程_SOP.md)
 
 ## 固定报告结构
 
