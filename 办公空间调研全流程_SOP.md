@@ -1,7 +1,7 @@
 ---
 document: 办公空间调研全流程 SOP
-version: "1.2"
-updated: 2026-10-05
+version: "1.3"
+updated: 2026-10-08
 status: reusable
 scope: research-github-eagle-obsidian
 ---
@@ -10,7 +10,7 @@ scope: research-github-eagle-obsidian
 
 ## 一、目标与交付物
 
-本 SOP 用于连续执行办公空间行业调研，并统一研究逻辑、报告格式、GitHub 审核与 Obsidian 归档方式。
+本 SOP 用于连续执行办公空间行业调研，并统一研究逻辑、报告格式、行业阶段汇总、GitHub 审核与 Obsidian 归档方式。
 
 每次调研形成三类交付物：
 
@@ -61,6 +61,7 @@ focus:
 → 用户审核并合并 Pull Request
 → 自动检测 main 中的审核版本
 → 自动归档到 Obsidian
+→ 同一行业第 5 份日报审核合并后，另生成行业汇总 PR
 ```
 
 ## Step 1：确定主题与边界
@@ -149,6 +150,12 @@ focus:
 若目标文件的非托管正文与 Git 审核版本不同、主题无法对应、报告尚未进入 `main` 或 GitHub 无法访问，任务必须停止该文件的正文归档并保留错误记录，不得猜测或静默覆盖。
 
 本机自动归档任务名为 `Codex-Office-Space-Obsidian-Archive`，每 30 分钟检查一次。电脑关机或用户未登录时不会在云端运行，恢复登录后继续检查；重复检查相同 Git blob 不会重复写入。
+
+## Step 9：五次调研后的行业汇总
+
+同一行业累计 5 份日报均已审核合并到 `main` 后，按 [办公空间行业五次调研汇总 SOP](./办公空间行业五次调研汇总_SOP.md) 另写一份汇总文档，并以独立 PR 供用户审核。该汇总不替代第五份日报，不把五份日报的比例简单平均，也不在未审核前归档 Obsidian。未满 5 次的行业暂不触发。
+
+当前 Obsidian 自动归档脚本只处理日报；行业汇总的自动归档需要另行扩展并验证，不能把汇总 PR 合并误报为“已归档”。
 
 当前空间调研 Vault：
 
@@ -350,6 +357,7 @@ perspective: furniture-design
 - [ ] 报告已提交独立研究分支
 - [ ] Pull Request 可以访问
 - [ ] 用户已审核并将 Pull Request 合并到 `main`
+- [ ] 同一行业满 5 份已审核日报时，已另建行业汇总文档和独立 PR
 
 ## Obsidian
 
