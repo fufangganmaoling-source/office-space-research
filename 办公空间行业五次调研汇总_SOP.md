@@ -1,7 +1,7 @@
 ---
 document: 办公空间行业五次调研汇总 SOP
-version: "1.0"
-updated: 2026-10-08
+version: "1.1"
+updated: 2026-10-10
 status: reusable
 ---
 
@@ -25,7 +25,7 @@ status: reusable
 
 ## 汇总文档格式
 
-GitHub 文件名：`<第五次调研日期>_<英文行业>_Five_Study_Summary.md`。示例：`2026-10-07_Technology_Companies_Five_Study_Summary.md`。文件名含 `Summary`，与每日报告命名区分，避免被日报归档程序误识别。
+GitHub 路径：`办公空间项目调研/<调研主题>空间调研/<第五次调研日期>_<英文行业>_Five_Study_Summary.md`。示例：`办公空间项目调研/科技类公司空间调研/2026-10-07_Technology_Companies_Five_Study_Summary.md`。与同一行业的每日报告同目录；文件名含 `Summary`，与每日报告命名区分，避免被日报归档程序误识别。
 
 ```yaml
 ---

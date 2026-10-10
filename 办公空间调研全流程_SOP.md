@@ -1,7 +1,7 @@
 ---
 document: 办公空间调研全流程 SOP
-version: "1.3"
-updated: 2026-10-08
+version: "1.4"
+updated: 2026-10-10
 status: reusable
 scope: research-github-eagle-obsidian
 ---
@@ -181,10 +181,11 @@ D:\dom知识库obsidian\dom知识库\.obsidian\空间调研知识库\空间项�
 
 ## 4.1 文件信息
 
-GitHub 文件名：
+GitHub 报告路径按行业分类；`<调研主题>`取月度计划中的中文主题，例如“科技类公司”。同一行业的每日报告和已审核汇总放在同一个子文件夹，不改变报告文件名：
 
 ```text
-YYYY-MM-DD_[Industry]_Office_Research.md
+办公空间项目调研/<调研主题>空间调研/YYYY-MM-DD_[Industry]_Research.md
+例：办公空间项目调研/科技类公司空间调研/2026-10-07_Technology_Companies_Research.md
 ```
 
 Obsidian 文件名：
